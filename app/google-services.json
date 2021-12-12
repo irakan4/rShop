@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "433416210181",
+    "firebase_url": "https://rshop-6d7a5-default-rtdb.firebaseio.com",
+    "project_id": "rshop-6d7a5",
+    "storage_bucket": "rshop-6d7a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433416210181:android:b31245bce420f091bbd96c",
+        "android_client_info": {
+          "package_name": "com.devrakan.rshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433416210181-ua6jn5grk9pqiehk8vtk0ggr7rmoudfc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCDvsF5mouwJPFKg61rIKTiwSzWp7WFXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433416210181-ua6jn5grk9pqiehk8vtk0ggr7rmoudfc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
