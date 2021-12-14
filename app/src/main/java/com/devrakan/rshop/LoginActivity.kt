@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             btn_login_register.setBackgroundColor(ContextCompat.getColor(this,R.color.teal_700))
         }
         // btn register . On Click , && show register fragment, hide login fragment, change the btn color & toolbar title//
-        // and also change the color of btn registerColor
+        // and also change the color of the btn registerColor
 
         btn_login_register.setOnClickListener {
             supportFragmentManager.beginTransaction()
