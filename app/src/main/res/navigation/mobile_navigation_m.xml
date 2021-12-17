@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/homeNavigation"
+    app:startDestination="@+id/homeNavigation_m"
 
     >
 
     <fragment
-        android:id="@+id/homeNavigation"
-        android:name="com.devrakan.rshop.ui.Fragment.User.HomeFragment"
+        android:id="@+id/homeNavigation_m"
+        android:name="com.devrakan.rshop.ui.Fragment.Manager.HomeFragmentManager"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/CartNavigation"
-        android:name="com.devrakan.rshop.ui.Fragment.User.CartFragment"
+        android:id="@+id/CartNavigation_m"
+        android:name="com.devrakan.rshop.ui.Fragment.Manager.OrderFragmentManager"
         android:label="Cart"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
-        android:id="@+id/ShopNavigation"
-        android:name="com.devrakan.rshop.ui.Fragment.User.ShopFragment"
+        android:id="@+id/ShopNavigation_m"
+        android:name="com.devrakan.rshop.ui.Fragment.Manager.SettingsFragment"
         android:label="Shops"
         tools:layout="@layout/fragment_shop" />
 
