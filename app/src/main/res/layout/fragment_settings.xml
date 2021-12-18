@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.Fragment.Manager.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@color/purple_700">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Toolbar.TitleText"
+                android:layout_weight="2"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+
+                android:text="Shop"/>
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_add_product_intint"
+                android:layout_weight="18"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                android:background="@color/teal_700"
+                />
+
+        </LinearLayout>
+
+
+    </Toolbar>
+
+
+</LinearLayout>

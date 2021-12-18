@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:gravity="top"
     android:orientation="vertical"
-    tools:context=".SignUpActivity">
+    tools:context=".ui.Authentication.SignUpActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
