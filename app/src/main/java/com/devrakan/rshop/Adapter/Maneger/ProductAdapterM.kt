@@ -9,7 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
+import com.devrakan.rshop.Model.Manager.ProductsM
 import com.devrakan.rshop.R
+import com.squareup.picasso.Picasso
 
 class ProductAdapterM(
     private var mContext: Context,
@@ -62,11 +64,11 @@ class ProductAdapterM(
 
 
     class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var productImage: ImageView = itemView.findViewById(R.id.image_date_R)
-        var productImageEdt: ImageView = itemView.findViewById(R.id.edt_image)
-        var productNameTextView: TextView = itemView.findViewById(R.id.tv_product_name)
-        var productPriceTextView: TextView = itemView.findViewById(R.id.textView4)
-        var productCauntView: TextView = itemView.findViewById(R.id.textView5)
+        var productImage: ImageView = itemView.findViewById(R.id.item_product_img)
+        var productImageEdt: ImageView = itemView.findViewById(R.id.item_cart_img)
+        var productNameTextView: TextView = itemView.findViewById(R.id.item_product_name)
+        var productPriceTextView: TextView = itemView.findViewById(R.id.item_product_price)
+        var productCauntView: TextView = itemView.findViewById(R.id.item_product_quantity)
 
 
     }
