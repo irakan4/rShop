@@ -41,27 +41,26 @@ class OrderFragmentManager : Fragment() {
         managerAdapter = context?.let { ProductAdapterM(it, mManager as ArrayList<ProductsM>) }
 
         recyclerView?.adapter = managerAdapter
-            retrieveProductManager()
+        retrieveProductManager()
         return view
 
     }
-
-    private fun retrieveProductManager(){
+    private fun retrieveProductManager() {
 
         var firebaseUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val userRef = FirebaseDatabase.getInstance().getReference().child("Products")
-        userRef.addValueEventListener(object:ValueEventListener{
+        userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 mManager?.clear()
-                for (snapshot in snapshot.children)
-                {
+                for (snapshot in snapshot.children) {
                     val manager = snapshot.getValue(ProductsM::class.java)
-                    if(manager != null ){
-                        if(firebaseUserId == manager.getPublisher()){
+                    if (manager != null) {
+                        if (firebaseUserId == manager.getPublisher()) {
                             mManager?.add(manager)
                         }
 
                     }
+
                 }
                 managerAdapter?.notifyDataSetChanged()
             }
@@ -70,6 +69,7 @@ class OrderFragmentManager : Fragment() {
             override fun onCancelled(error: DatabaseError) {
 
             }
+
         })
     }
 

@@ -9,9 +9,7 @@ class ProductsM {
     private var productCount: String = ""
     private var ProductImage: String = ""
 
-
     constructor()
-
 
     constructor(
         ProductId: String,
@@ -32,6 +30,7 @@ class ProductsM {
 
     fun getProductName(): String {
         return productName
+
     }
 
     fun setProductName(productName: String) {

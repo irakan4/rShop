@@ -31,41 +31,14 @@ class ProductAdapterM(
 
         var product = mProduct[position]
         Picasso.get().load(product.getProductImage()).into(holder.productImage)
-
-
         holder.productNameTextView.text = product.getProductName()
         holder.productPriceTextView.text = "P: ${product.getProductPrice()} $"
         holder.productCauntView.text = "Q: ${product.getProductCount()}"
-        holder.productImageEdt.setOnClickListener {
-
-            val inflater = LayoutInflater.from(mContext)
-            val view = inflater.inflate(R.layout.activity_add_product,null)
-
-            val builder = AlertDialog.Builder(mContext)
-            builder.setView(view)
-            val dialog = builder.create()
-            dialog.show()
-
-
-//            val ref = FirebaseDatabase.getInstance().reference.child("Products").child(product.getProductId())
-//            val postMap = HashMap<String, Any>()
-//            postMap["productName"] = "m"
-//            postMap["productPrice"] = "m"
-//            postMap["productCount"] = "m"
-//            postMap["ProductImage"] = "m"
-
-            //  ref.updateChildren(postMap)
-
-
-        }
 
     }
 
-
-
     class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
         var productImage: ImageView = itemView.findViewById(R.id.item_product_img)
-        var productImageEdt: ImageView = itemView.findViewById(R.id.item_cart_img)
         var productNameTextView: TextView = itemView.findViewById(R.id.item_product_name)
         var productPriceTextView: TextView = itemView.findViewById(R.id.item_product_price)
         var productCauntView: TextView = itemView.findViewById(R.id.item_product_quantity)

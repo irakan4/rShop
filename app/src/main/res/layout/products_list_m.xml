@@ -12,14 +12,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:background="@drawable/products_bg">
-        <ImageView
-            android:id="@+id/item_cart_img"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="left"
-            android:padding="10dp"
-            android:background="@drawable/products_bg"
-            android:src="@drawable/ic_baseline_shopping_cart_24"/>
+
         <ImageView
             android:id="@+id/item_product_img"
             android:layout_width="150dp"
