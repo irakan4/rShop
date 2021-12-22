@@ -49,7 +49,6 @@ class ProductAdapterUser(private var mContext: Context, private var mUserProduct
         val productQuantity:TextView = itemView.findViewById(R.id.item_product_quantity)
         val productImg:ImageView = itemView.findViewById(R.id.item_product_img)
 
-
     }
 
 }

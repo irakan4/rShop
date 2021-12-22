@@ -29,6 +29,7 @@ class ProductU {
     fun getProductId(): String {
         return ProductId
     }
+
     fun setProductId(ProductId: String){
         this.ProductId = ProductId
 
