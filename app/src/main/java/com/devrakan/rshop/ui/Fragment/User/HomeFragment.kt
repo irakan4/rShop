@@ -23,7 +23,6 @@ class HomeFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var mProductAdapterUser: ProductAdapterUser? = null
     private var mProductU: MutableList<ProductU>? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +35,6 @@ class HomeFragment : Fragment() {
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
         mProductU = ArrayList()
         mProductAdapterUser = context?.let { ProductAdapterUser(it, mProductU as ArrayList<ProductU>) }
-
         recyclerView?.adapter = mProductAdapterUser
         retrieveProductManager()
         return view
@@ -53,10 +51,10 @@ class HomeFragment : Fragment() {
                     if (product != null) {
                         mProductU?.add(product)
 
-
                     }
 
                 }
+
                 mProductAdapterUser?.notifyDataSetChanged()
             }
 
