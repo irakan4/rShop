@@ -1,4 +1,4 @@
-package com.devrakan.rshop.Model.User
+package com.devrakan.rshop.Model
 
 class ProductU {
 
@@ -8,6 +8,8 @@ class ProductU {
     private var productName: String = ""
     private var productPrice: String = ""
     private var publisher: String = ""
+    private var description:String = ""
+
 
     constructor()
     constructor(
@@ -16,7 +18,8 @@ class ProductU {
         productCount: String,
         productName: String,
         productPrice: String,
-        publisher: String
+        publisher: String,
+        description:String
     ) {
         this.ProductId = ProductId
         this.ProductImage = ProductImage
@@ -24,6 +27,8 @@ class ProductU {
         this.productName = productName
         this.productPrice = productPrice
         this.publisher = publisher
+        this.description = description
+
     }
 
     fun getProductId(): String {
@@ -62,7 +67,7 @@ class ProductU {
     fun getProductPrice():String{
         return productPrice
     }
-
+    
     fun setProductPrice(productPrice:String){
         this.productPrice = productPrice
     }
@@ -74,5 +79,14 @@ class ProductU {
     fun setPublisher(publisher:String){
         this.publisher = publisher
     }
+
+    fun getDescription():String{
+        return description
+    }
+
+    fun setDescription(description:String){
+        this.description = description
+    }
+
 
 }

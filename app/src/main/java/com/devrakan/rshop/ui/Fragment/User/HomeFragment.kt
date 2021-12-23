@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.devrakan.rshop.Adapter.Maneger.ProductAdapterM
 import com.devrakan.rshop.Adapter.User.ProductAdapterUser
-import com.devrakan.rshop.Model.Manager.ProductsM
-import com.devrakan.rshop.Model.User.ProductU
+import com.devrakan.rshop.Model.ProductU
 import com.devrakan.rshop.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -41,7 +38,6 @@ class HomeFragment : Fragment() {
     }
     private fun retrieveProductManager() {
 
-
         val userRef = FirebaseDatabase.getInstance().getReference().child("Products")
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -51,13 +47,13 @@ class HomeFragment : Fragment() {
                     if (product != null) {
                         mProductU?.add(product)
 
+
                     }
 
                 }
 
                 mProductAdapterUser?.notifyDataSetChanged()
             }
-
 
             override fun onCancelled(error: DatabaseError) {
 
