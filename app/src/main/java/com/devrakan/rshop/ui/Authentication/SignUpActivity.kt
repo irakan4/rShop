@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
             l1.visibility = View.VISIBLE
             tv_signup.text = "Create an account for your business"
 
-            var options = arrayOf("Dental Clinic", "Law Office")
+            var options = arrayOf("Laptop Store", "Phone Store")
 
             spinner.adapter =
                 ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options)
@@ -52,7 +52,6 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-
 
                 }
 
@@ -161,12 +160,11 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val usersRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 
-
         val userMap = HashMap<String, Any>()
         userMap["uid"] = currentUserId
         userMap["username"] = userName.toLowerCase()
         userMap["email"] = email
-        userMap["bio"] = "hey i am using this app"
+        userMap["bio"] = "hey i'm using this app"
         if (business == true) {
             userMap["Manager"] = true
         }
@@ -234,8 +232,6 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
             "https://firebasestorage.googleapis.com/v0/b/an-appointment-fdf7a.appspot.com/o/profile%2Fprofile.png?alt=media&token=463899a7-fbdf-49c6-ab40-1d7764aa8299"
 
         usersRef.child(currentUserId).setValue(userMap)
-
-
     }
 
 

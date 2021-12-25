@@ -15,9 +15,6 @@
             android:name=".CartActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AddProductActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.Authentication.SignUpActivity"
             android:exported="false" />
         <activity

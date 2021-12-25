@@ -1,14 +1,14 @@
 package com.devrakan.rshop.ui.Fragment.Manager
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.devrakan.rshop.Adapter.Maneger.ProductAdapterM
-import com.devrakan.rshop.Model.Manager.ProductsM
+import com.devrakan.rshop.Adapter.ProductAdapter
+import com.devrakan.rshop.Model.ProductU
 import com.devrakan.rshop.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -20,8 +20,8 @@ import com.google.firebase.database.ValueEventListener
 class OrderFragmentManager : Fragment() {
 
     private var recyclerView: RecyclerView? = null
-    private var managerAdapter: ProductAdapterM? = null
-    private var mManager: MutableList<ProductsM>? = null
+    private var Adapter: ProductAdapter? = null
+    private var mList: MutableList<ProductU>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +37,9 @@ class OrderFragmentManager : Fragment() {
         recyclerView = view.findViewById(R.id.manager_list_products)
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
-        mManager = ArrayList()
-        managerAdapter = context?.let { ProductAdapterM(it, mManager as ArrayList<ProductsM>) }
-
-        recyclerView?.adapter = managerAdapter
+        mList = ArrayList()
+        Adapter = context?.let { ProductAdapter(it, mList as ArrayList<ProductU>) }
+        recyclerView?.adapter = Adapter
         retrieveProductManager()
         return view
 
@@ -51,20 +50,20 @@ class OrderFragmentManager : Fragment() {
         val userRef = FirebaseDatabase.getInstance().getReference().child("Products")
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                mManager?.clear()
+                mList?.clear()
                 for (snapshot in snapshot.children) {
-                    val manager = snapshot.getValue(ProductsM::class.java)
+                    val manager = snapshot.getValue(ProductU::class.java)
                     if (manager != null) {
                         if (firebaseUserId == manager.getPublisher()) {
-                            mManager?.add(manager)
+                            mList?.add(manager)
                         }
+
 
                     }
 
                 }
-                managerAdapter?.notifyDataSetChanged()
+                Adapter?.notifyDataSetChanged()
             }
-
 
             override fun onCancelled(error: DatabaseError) {
 

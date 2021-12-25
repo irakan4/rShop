@@ -8,8 +8,7 @@ class ProductU {
     private var productName: String = ""
     private var productPrice: String = ""
     private var publisher: String = ""
-    private var description:String = ""
-
+    //private var description: String = ""
 
     constructor()
     constructor(
@@ -19,7 +18,7 @@ class ProductU {
         productName: String,
         productPrice: String,
         publisher: String,
-        description:String
+       // description: String
     ) {
         this.ProductId = ProductId
         this.ProductImage = ProductImage
@@ -27,7 +26,8 @@ class ProductU {
         this.productName = productName
         this.productPrice = productPrice
         this.publisher = publisher
-        this.description = description
+       // this.description = description
+
 
     }
 
@@ -35,58 +35,60 @@ class ProductU {
         return ProductId
     }
 
-    fun setProductId(ProductId: String){
+    fun setProductId(ProductId: String) {
         this.ProductId = ProductId
 
     }
 
-    fun getProductImage():String{
+    fun getProductImage(): String {
         return ProductImage
     }
 
-    fun setProductImage(ProductImage:String){
+    fun setProductImage(ProductImage: String) {
         this.ProductImage = ProductImage
     }
 
-    fun getProductCount():String{
+    fun getProductCount(): String {
         return productCount
     }
 
-    fun setProductCount(productCount:String){
+    fun setProductCount(productCount: String) {
         this.productCount = productCount
     }
 
-    fun getProductName():String{
+    fun getProductName(): String {
         return productName
     }
 
-    fun setProductName(productName:String){
+    fun setProductName(productName: String) {
         this.productName = productName
     }
 
-    fun getProductPrice():String{
+    fun getProductPrice(): String {
         return productPrice
     }
-    
-    fun setProductPrice(productPrice:String){
+
+    fun setProductPrice(productPrice: String) {
         this.productPrice = productPrice
     }
 
-    fun getPublisher():String{
+    fun getPublisher(): String {
         return publisher
     }
 
-    fun setPublisher(publisher:String){
+    fun setPublisher(publisher: String) {
         this.publisher = publisher
     }
 
-    fun getDescription():String{
-        return description
-    }
+//    fun getDescription(): String {
+//        return description
+//    }
+//
+//    fun setDescription(description: String) {
+//        this.description = description
+//    }
 
-    fun setDescription(description:String){
-        this.description = description
-    }
+
 
 
 }

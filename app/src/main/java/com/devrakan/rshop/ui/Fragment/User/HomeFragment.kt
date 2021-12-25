@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.devrakan.rshop.Adapter.User.ProductAdapterUser
+import com.devrakan.rshop.Adapter.ProductAdapter
 import com.devrakan.rshop.Model.ProductU
 import com.devrakan.rshop.R
 import com.google.firebase.database.DataSnapshot
@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener
 class HomeFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
-    private var mProductAdapterUser: ProductAdapterUser? = null
+    private var mProductAdapterUser: ProductAdapter? = null
     private var mProductU: MutableList<ProductU>? = null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,10 +31,11 @@ class HomeFragment : Fragment() {
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = GridLayoutManager(context, 2)
         mProductU = ArrayList()
-        mProductAdapterUser = context?.let { ProductAdapterUser(it, mProductU as ArrayList<ProductU>) }
+        mProductAdapterUser = context?.let { ProductAdapter(it, mProductU as ArrayList<ProductU>) }
         recyclerView?.adapter = mProductAdapterUser
         retrieveProductManager()
         return view
+
     }
     private fun retrieveProductManager() {
 

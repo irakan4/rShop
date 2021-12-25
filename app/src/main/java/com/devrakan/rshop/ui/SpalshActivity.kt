@@ -18,7 +18,7 @@ class SpalshActivity : AppCompatActivity() {
         // this is Splash in , in logo //
         ic_logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splah_in))
         Handler().postDelayed({
-            // this is Splash Out //
+            //  Splash Out //
             ic_logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_out))
 
             Handler().postDelayed({

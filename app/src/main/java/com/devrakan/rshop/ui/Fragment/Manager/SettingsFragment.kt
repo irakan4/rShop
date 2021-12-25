@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.devrakan.rshop.CartActivity
 import com.devrakan.rshop.R
-import com.devrakan.rshop.ui.AddProductActivity
 import kotlinx.android.synthetic.main.fragment_settings.view.*
-
 
 class SettingsFragment : Fragment() {
 
@@ -25,11 +24,16 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
        val view = inflater.inflate(R.layout.fragment_settings, container, false)
         view.btn_add_product_intint.setOnClickListener{
-            startActivity(Intent(activity?.applicationContext,AddProductActivity::class.java))
+          val intent =  Intent(activity?.applicationContext,CartActivity::class.java)
+            intent.putExtra("adapter",true)
+            startActivity(intent)
+
 
         }
         return view
+
     }
 
 
     }
+
