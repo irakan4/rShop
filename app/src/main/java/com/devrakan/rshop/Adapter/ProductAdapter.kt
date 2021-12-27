@@ -30,8 +30,8 @@ class ProductAdapter(private val mContext: Context, private val mProduct: List<P
         Picasso.get().load(product.getProductImage()).into(holder.productImage)
         holder.productImage.setOnClickListener {
             val intent = Intent(mContext,CartActivity::class.java)
-            intent.putExtra("adapter",product.getProductId())
-            intent.putExtra("user",false)
+            intent.putExtra("pro",product.getProductId())
+            intent.putExtra("adapter",false)
             mContext.startActivity(intent)
 
         }

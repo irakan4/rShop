@@ -42,7 +42,7 @@ class OrderFragmentManager : Fragment() {
         recyclerView?.adapter = Adapter
         retrieveProductManager()
         return view
-
+        
     }
     private fun retrieveProductManager() {
 
@@ -57,7 +57,6 @@ class OrderFragmentManager : Fragment() {
                         if (firebaseUserId == manager.getPublisher()) {
                             mList?.add(manager)
                         }
-
 
                     }
 

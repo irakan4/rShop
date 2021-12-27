@@ -73,10 +73,11 @@ class LoginActivity : AppCompatActivity(), TextWatcher {
 
             if (task.isSuccessful) {
                 intent()
+
             }
 
-
         }
+
     }
 
 
@@ -117,6 +118,7 @@ class LoginActivity : AppCompatActivity(), TextWatcher {
     }
 
     override fun afterTextChanged(s: Editable?) {
+        
     }
 
     fun intent() {
