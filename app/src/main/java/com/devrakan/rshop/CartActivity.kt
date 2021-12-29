@@ -44,22 +44,6 @@ class CartActivity : AppCompatActivity() {
         adapter = intent.extras?.getString("pro").toString()
 
         if (user == false) {
-            add_product_btn_delete.visibility = View.VISIBLE
-            add_product_btn_delete.text = "Delete Product"
-            add_product_btn_update.text = "Update Product"
-            add_product_btn_delete.setOnClickListener {
-                val ref = FirebaseDatabase.getInstance().reference.child("Products")
-                    .child(adapter)
-                ref.removeValue()
-                Toast.makeText(
-                    this@CartActivity,
-                    "Products uploaded successfully",
-                    Toast.LENGTH_LONG
-                ).show()
-                val intent = Intent(this@CartActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
 
 
         } else if (user == true) {
@@ -181,7 +165,6 @@ class CartActivity : AppCompatActivity() {
     private fun uploadImageCart() {
 
 
-
         when {
 
             uriImg == null -> Toast.makeText(
@@ -267,7 +250,6 @@ class CartActivity : AppCompatActivity() {
             }
 
 
-
         }
 
 
@@ -303,28 +285,51 @@ class CartActivity : AppCompatActivity() {
 
                     lay_show_manger.visibility = View.VISIBLE
                     if (user == false) {
-                        val database = FirebaseDatabase.getInstance()
-                        val ref2 = database.getReference("Products").child(adapter)
-                        ref2.addValueEventListener(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                val product: ProductU =
-                                    snapshot.getValue(ProductU::class.java)!!
-                                Picasso.get().load(product.getProductImage())
-                                    .into(add_product_Image)
-                                add_product_name.setText(product.getProductName())
-                                add_product_description.setText(product.getProductName())
-                                add_product_quantity.setText(product.getProductCount())
-                                add_product_price.setText(product.getProductPrice())
 
-                            }
 
-                            override fun onCancelled(error: DatabaseError) {
-
-                            }
-                        })
+//                            val database = FirebaseDatabase.getInstance()
+//                            val ref2 = database.getReference("Products").child(adapter)
+//                            ref2.addValueEventListener(object : ValueEventListener {
+//                                override fun onDataChange(snapshot: DataSnapshot) {
+//                                    val product: ProductU =
+//                                        snapshot.getValue(ProductU::class.java)!!
+//                                    Picasso.get().load(product.getProductImage())
+//                                        .into(add_product_Image)
+//                                    add_product_name.setText(product.getProductName())
+//                                    add_product_description.setText(product.getProductName())
+//                                    add_product_quantity.setText(product.getProductCount())
+//                                    add_product_price.setText(product.getProductPrice())
+//
+//                                }
+//
+//                                override fun onCancelled(error: DatabaseError) {
+//
+//                                    val error = error.message
+//                                    Toast.makeText(this@CartActivity, error, Toast.LENGTH_LONG).show()
+//
+//                                }
+//                            })
 
 
                     }
+
+                    add_product_btn_delete.visibility = View.VISIBLE
+                    add_product_btn_delete.text = "Delete Product"
+                    add_product_btn_update.text = "Update Product"
+                    add_product_btn_delete.setOnClickListener {
+                        val ref = FirebaseDatabase.getInstance().reference.child("Products")
+                            .child(adapter)
+                        ref.removeValue()
+                        Toast.makeText(
+                            this@CartActivity,
+                            "Products uploaded successfully",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(this@CartActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
 
                     add_product_btn_update.setOnClickListener {
                         if (user == false) {
@@ -345,6 +350,8 @@ class CartActivity : AppCompatActivity() {
                     setUpUser()
 
                 }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
