@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,30 +10,36 @@
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         android:layout_gravity="top"
-        android:background="@color/purple_700">
+        android:layout_gravity="top"
+        android:background="@color/purple_700"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
+            android:id="@+id/tv_toolbar"
+            style="@style/Toolbar.TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Toolbar.TitleText"
-            android:paddingStart="15dp"
+            android:paddingStart="10dp"
             android:paddingEnd="15dp"
-            android:text="Products"/>
+            android:text="@string/title_product" />
     </Toolbar>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_product"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-        </LinearLayout>
+        android:orientation="horizontal">
 
+      <androidx.recyclerview.widget.RecyclerView
+
+          android:id="@+id/list_products"
+          android:numColumns="2"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:listitem="@layout/products_list"
+
+          />
+
+    </LinearLayout>
 
 </LinearLayout>

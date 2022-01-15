@@ -12,17 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RShop">
         <activity
-            android:name=".CartActivity"
+            android:name=".WorkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowMessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CartActivity"
             android:exported="false" />
         <activity
             android:name=".ui.Authentication.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main" />
+            android:name=".ui.MainActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.SpalshActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

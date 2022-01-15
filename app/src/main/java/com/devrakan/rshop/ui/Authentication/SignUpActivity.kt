@@ -11,21 +11,25 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.devrakan.rshop.MainActivity
 import com.devrakan.rshop.R
+import com.devrakan.rshop.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
-class SignUpActivity : AppCompatActivity(),TextWatcher {
+class SignUpActivity : AppCompatActivity(), TextWatcher {
+
     var x: String? = null
     private val mAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
+
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
 
         back.setOnClickListener {
             finish()
@@ -53,6 +57,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
+
                 }
 
             }
@@ -66,6 +71,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
         edText_name_sign_up.addTextChangedListener(this@SignUpActivity)
         edText_email_sign_up.addTextChangedListener(this@SignUpActivity)
         edText_password_sign_up.addTextChangedListener(this@SignUpActivity)
+        edText_phone_sign_up.addTextChangedListener(this@SignUpActivity)
         //*********//
 
 
@@ -74,10 +80,16 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
             val name = edText_name_sign_up.text.trim().toString()
             val email = edText_email_sign_up.text.trim().toString()
             val password = edText_password_sign_up.text.trim().toString()
+            val phone = edText_phone_sign_up.text.trim().toString()
 
             if (name.isEmpty()) {
                 edText_name_sign_up.error = "Name Required"
                 edText_name_sign_up.requestFocus()
+                return@setOnClickListener
+            }
+            if (phone.isEmpty()) {
+                edText_phone_sign_up.error = "phone Required"
+                edText_phone_sign_up.requestFocus()
                 return@setOnClickListener
             }
             if (email.isEmpty()) {
@@ -97,7 +109,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
                 return@setOnClickListener
             }
 
-            createNewAccount(name, email, password)
+            createNewAccount(name, email, password,phone)
 
         }
 
@@ -106,7 +118,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
 
 
     // create New Account
-    private fun createNewAccount(name: String, email: String, password: String) {
+    private fun createNewAccount(name: String, email: String, password: String,phone:String) {
         val progreessDialog = ProgressDialog(this@SignUpActivity)
         progreessDialog.setTitle("SignUp")
         progreessDialog.setMessage("Please whit, this may take a while...")
@@ -116,10 +128,10 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
 
             if (task.isSuccessful) {
-                saveUserInfo(name, email, progreessDialog)
+                saveUserInfo(name, email,phone, progreessDialog)
                 var business = intent.extras?.getBoolean("isManager")
                 if (business == true) {
-                    saveBusinessInfo(name, email)
+                    saveBusinessInfo(name, email,phone)
                 }
             } else {
                 val message = task.exception!!.toString()
@@ -143,6 +155,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
             edText_name_sign_up.text.trim().isNotEmpty()
                     && edText_email_sign_up.text.trim().isNotEmpty()
                     && edText_password_sign_up.text.trim().isNotEmpty()
+                    && edText_phone_sign_up.text.trim().isNotEmpty()
 
     }
 
@@ -154,19 +167,23 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
 
         userName: String,
         email: String,
+        phone: String,
         progreessDialog: ProgressDialog
     ) {
         var business = intent.extras?.getBoolean("isManager")
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val usersRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 
+
         val userMap = HashMap<String, Any>()
         userMap["uid"] = currentUserId
         userMap["username"] = userName.toLowerCase()
         userMap["email"] = email
-        userMap["bio"] = "hey i'm using this app"
+        userMap["phone"] = phone
+        userMap["bio"] = "hey i am using this app"
         if (business == true) {
             userMap["Manager"] = true
+            userMap["work"] = x.toString()
         }
 
         if (business == false) {
@@ -191,15 +208,9 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
                         "Account has been created successfully",
                         Toast.LENGTH_LONG
                     ).show()
-                    if (business == true) {
-                        val intent = Intent(this@SignUpActivity, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-                    } else if (business == false) {
-                        val intent = Intent(this@SignUpActivity, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-                    }
+                    val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                 } else {
                     val message = task.exception!!.toString()
                     Toast.makeText(
@@ -217,7 +228,8 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
 
     fun saveBusinessInfo(
         userName: String,
-        email: String
+        email: String,
+        phone: String
     ) {
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val usersRef: DatabaseReference =
@@ -227,13 +239,15 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
         userMap["username"] = userName.toLowerCase()
         userMap["email"] = email
         userMap["bio"] = "hey i am using this app"
+        userMap["phone"] = phone.toLowerCase()
         userMap["work"] = x.toString()
         userMap["image"] =
             "https://firebasestorage.googleapis.com/v0/b/an-appointment-fdf7a.appspot.com/o/profile%2Fprofile.png?alt=media&token=463899a7-fbdf-49c6-ab40-1d7764aa8299"
 
         usersRef.child(currentUserId).setValue(userMap)
+
+
     }
 
 
 }
-

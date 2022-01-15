@@ -1,5 +1,6 @@
 package com.devrakan.rshop.Model
 
+
 class Store {
     private var uid: String = ""
     private var email: String = ""
@@ -8,6 +9,7 @@ class Store {
     private var image: String = ""
 
     constructor()
+
 
     constructor(uid: String, email: String, username: String, phone: String, image: String) {
         this.uid = uid

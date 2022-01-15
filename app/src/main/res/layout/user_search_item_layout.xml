@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image_chat_search"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/person" />
+
+    <TextView
+        android:id="@+id/username_chat_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/profile_image_chat_search"
+        android:layout_toRightOf="@+id/profile_image_chat_search"
+        android:text="user Name"
+        android:textSize="19sp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_online"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/person"
+        app:civ_border_color="#05df29"
+        app:civ_border_width="12dp"
+        android:layout_below="@+id/username_chat_search"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="-116dp"
+        android:layout_toEndOf="@+id/profile_image_chat_search"
+        android:layout_toRightOf="@+id/username_chat_search"
+        android:visibility="gone"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_offline"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/person"
+        app:civ_border_color="#cfcfcf"
+        app:civ_border_width="12dp"
+        android:layout_below="@+id/username_chat_search"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="-116dp"
+        android:layout_toEndOf="@+id/profile_image_chat_search"
+        android:layout_toRightOf="@+id/username_chat_search"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/message_last"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username_chat_search"
+        android:layout_alignStart="@+id/username_chat_search"
+        android:layout_alignEnd="@+id/username_chat_search"
+        android:layout_toRightOf="@+id/profile_image_chat_search"
+        android:maxLines="1"
+        android:padding="6dp"
+        android:textColor="@color/purple_700"
+        android:textSize="19sp" />
+
+</RelativeLayout>

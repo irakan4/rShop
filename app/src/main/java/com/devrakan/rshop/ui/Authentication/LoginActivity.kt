@@ -1,29 +1,29 @@
 package com.devrakan.rshop.ui.Authentication
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.devrakan.rshop.MainActivity
 import com.devrakan.rshop.R
+import com.devrakan.rshop.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.manager_dialog.view.*
 
 class LoginActivity : AppCompatActivity(), TextWatcher {
+
     private val mAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         edText_email_sign_in.addTextChangedListener(this@LoginActivity)
         edText_password_sign_in.addTextChangedListener(this@LoginActivity)
 
@@ -73,23 +73,31 @@ class LoginActivity : AppCompatActivity(), TextWatcher {
 
             if (task.isSuccessful) {
                 intent()
+            } else {
 
-            }
-
+            val message = task.exception!!.toString()
+            Toast.makeText(
+                this,
+                "Error: $message",
+                Toast.LENGTH_LONG
+            ).show()
+            FirebaseAuth.getInstance().signOut()
         }
 
+
+        }
     }
 
 
     private fun showCustomAlert() {
-        val dialogView = layoutInflater.inflate(R.layout.manager_dialog, null)
+        val dialogView = layoutInflater.inflate(R.layout.dialog, null)
         val customDialog = AlertDialog.Builder(this)
         customDialog.setTitle("Choose an account")
         customDialog.setMessage("Create an account for yourself or your business")
             .setView(dialogView)
             .show()
 
-        val forMe = dialogView.findViewById<Button>(R.id.btn_forme)
+        val forMe = dialogView.findViewById<Button>(R.id.btn_forMe)
         forMe.setOnClickListener {
             var intentSignUpActivity = Intent(this, SignUpActivity::class.java)
             intentSignUpActivity.putExtra("isManager", false)
@@ -117,12 +125,11 @@ class LoginActivity : AppCompatActivity(), TextWatcher {
                 edText_password_sign_in.text.trim().toString().isNotEmpty()
     }
 
+
     override fun afterTextChanged(s: Editable?) {
-        
     }
 
     fun intent() {
-
 
         val intentMainActivity =
             Intent(this@LoginActivity, MainActivity::class.java)
@@ -130,8 +137,8 @@ class LoginActivity : AppCompatActivity(), TextWatcher {
 
         startActivity(intentMainActivity)
 
-
     }
 
 
 }
+
