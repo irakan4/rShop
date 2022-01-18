@@ -1,13 +1,15 @@
 <resources>
-    <string name="app_name">rShop</string>
-    <string name="title_product">Products</string>
-    <string name="title_cart">cart</string>
-    <string name="title_shops">Shops</string>
-    <string name="Enter_Product_Name">Enter Product Name…</string>
-    <string name="Enter_Product_Price">Enter Product Price…</string>
-    <string name="Enter_Product_Quantity">Enter Product Quantity…</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="sign_in">Sign in</string>
-    <string name="create_account">create account</string>
+    <string name="app_name" translatable="false">rShop</string>
+    <string name="title_product" translatable="false">Products</string>
+    <string name="title_cart" translatable="false">cart</string>
+    <string name="title_shops" translatable="false">Shops</string>
+    <string name="Enter_Product_Name" translatable="false">Enter Product Name…</string>
+    <string name="Enter_Product_Price" translatable="false">Enter Product Price…</string>
+    <string name="Enter_Product_Quantity" translatable="false">Enter Product Quantity…</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="sign_in" translatable="false">Sign in</string>
+    <string name="create_account" translatable="false">create account</string>
+    <string name="for_me">for me</string>
+    <string name="for_my_business">For my business</string>
 </resources>

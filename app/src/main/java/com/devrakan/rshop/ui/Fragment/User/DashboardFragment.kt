@@ -37,7 +37,6 @@ class DashboardFragment : Fragment() {
         recyclerView?.adapter = userAdapter
 
         retrieveUsers()
-        
         return view
     }
 

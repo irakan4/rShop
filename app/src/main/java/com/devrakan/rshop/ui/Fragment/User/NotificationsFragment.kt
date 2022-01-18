@@ -92,11 +92,6 @@ class NotificationsFragment : Fragment() {
 
         }
 
-
-
-
-
-
         return view
 
     }

@@ -19,7 +19,6 @@ class InfoActivity : AppCompatActivity() {
 
         val x = intent.extras?.getString("user")
 
-
         val database = FirebaseDatabase.getInstance()
         val id = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val ref2 = database.getReference("Users").child(x.toString())

@@ -81,7 +81,6 @@ class ChatActivity : AppCompatActivity() {
         seenMeassage(userIdVisit!!)
     }
 
-
     private fun sendMessageToUser(senderId: String, receiverId: String?, message: String) {
         val reference = FirebaseDatabase.getInstance().reference
         val messageKey = reference.push().key
