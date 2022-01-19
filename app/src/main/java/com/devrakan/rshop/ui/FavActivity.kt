@@ -32,7 +32,7 @@ class FavActivity : AppCompatActivity() {
     private var mStorege: StorageReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cart)
+        setContentView(R.layout.activity_fav)
 
 
         mStorege = FirebaseStorage.getInstance().reference.child("Products Pictures")
