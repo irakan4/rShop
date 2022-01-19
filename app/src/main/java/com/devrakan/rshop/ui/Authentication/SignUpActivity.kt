@@ -40,7 +40,6 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
 
             l1.visibility = View.VISIBLE
             tv_signup.text = "Create an account for your business"
-
             var options = arrayOf("Laptop Store", "Phone Store")
 
             spinner.adapter =

@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">آر شوب</string>
+    <string name="title_product" translatable="false">منتجات</string>
+    <string name="title_cart" translatable="false">السلة</string>
+    <string name="title_shops" translatable="false">المتاجر</string>
+    <string name="Enter_Product_Name" translatable="false">ادخل اسم المنج</string>
+    <string name="Enter_Product_Price" translatable="false">ادخل سعر المنتج</string>
+    <string name="Enter_Product_Quantity" translatable="false">عدد المنتجات</string>
+    <string name="email" translatable="false">الايميل</string>
+    <string name="password" translatable="false">كلمة المرور</string>
+    <string name="sign_in" translatable="false">تسجيل دخول</string>
+    <string name="create_account" translatable="false">إنشاء حساب</string>
     <string name="for_me">مستخدم</string>
     <string name="for_my_business">تاجر</string>
+    <string name="dialog_td">آختر نوع الحساب </string>
+    <string name="dialog_td2">انشئ حساب تاجر او حساب شخصي </string>
 </resources>

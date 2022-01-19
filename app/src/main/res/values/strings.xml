@@ -12,4 +12,8 @@
     <string name="create_account" translatable="false">create account</string>
     <string name="for_me">for me</string>
     <string name="for_my_business">For my business</string>
+    <string name="dialog_td">Choose an account1212132434 </string>
+    <string name="dialog_td2">Create an account for yourself or your business </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

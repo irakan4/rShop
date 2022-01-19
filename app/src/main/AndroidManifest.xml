@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RShop">
         <activity
+            android:name=".ui.FavActivity"
+            android:exported="false" />
+        <activity
             android:name=".WorkActivity"
             android:exported="false" />
         <activity

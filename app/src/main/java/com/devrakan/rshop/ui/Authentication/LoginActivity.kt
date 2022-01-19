@@ -92,8 +92,8 @@ class LoginActivity : AppCompatActivity(), TextWatcher {
     private fun showCustomAlert() {
         val dialogView = layoutInflater.inflate(R.layout.dialog, null)
         val customDialog = AlertDialog.Builder(this)
-        customDialog.setTitle("Choose an account")
-        customDialog.setMessage("Create an account for yourself or your business")
+        customDialog.setTitle(getString(R.string.dialog_td))
+        customDialog.setMessage(getString(R.string.dialog_td2))
             .setView(dialogView)
             .show()
 
