@@ -1,6 +1,7 @@
 package com.devrakan.rshop
 import android.app.ProgressDialog
 import android.content.Intent
+import API.APIService
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devrakan.rshop.Adapter.ChatsAdapter
 import com.devrakan.rshop.Model.Chat
 import com.devrakan.rshop.Model.Users
+import com.devrakan.rshop.Nontfications.*
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +22,10 @@ import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_chat.*
+import retrofit2.Call
+import retrofit2.Response
+
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 
 class ChatActivity : AppCompatActivity() {
     var firebaseUser: FirebaseUser? = null
@@ -29,11 +35,16 @@ class ChatActivity : AppCompatActivity() {
     lateinit var recycler_view_chats: RecyclerView
     var notify = false
     var userIdVisit: String = ""
+    var apiService:APIService? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_chat)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
+
+        apiService =
+            Client.Client.getClient("https://fcm.googleapis.com/")!!.create(APIService::class.java)
 
         userIdVisit = intent.extras?.getString("visit_id").toString()
 
@@ -128,6 +139,7 @@ class ChatActivity : AppCompatActivity() {
                 val user = snapshot.getValue(Users::class.java)
 
                 if (notify) {
+                    sendNotification(receiverId,user!!.getUsername(),message)
                 }
                 notify = false
 
@@ -137,6 +149,59 @@ class ChatActivity : AppCompatActivity() {
 
             }
         })
+
+    }
+    private fun sendNotification(receiverId: String?, username: String, message: String) {
+
+        val ref = FirebaseDatabase.getInstance().reference.child("Tokens")
+
+        val query = ref.orderByKey().equalTo(receiverId)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (dataSnapshot in snapshot.children) {
+                    val token: Token? = dataSnapshot.getValue(Token::class.java)
+                    val data = Data(
+                        firebaseUser!!.uid,
+                        R.mipmap.ic_launcher,
+                        "$username: $message",
+                        "New Message",
+                        userIdVisit!!
+                    )
+                    val sender = Sender(data!!, token!!.getToken().toString())
+
+                    apiService!!.sendNotification(sender)
+                        .enqueue(object : retrofit2.Callback<MyResponse> {
+                            override fun onResponse(
+                                call: Call<MyResponse>,
+                                response: Response<MyResponse>
+                            ) {
+                                if (response.code() == 200) {
+                                    if (response.body()!!.success !== 1) {
+                                        Toast.makeText(
+                                            this@ChatActivity,
+                                            "Failed, Nothing happen.",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                }
+                            }
+
+                            override fun onFailure(call: Call<MyResponse>, t: Throwable) {
+
+                            }
+                        })
+
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
 
     }
 
